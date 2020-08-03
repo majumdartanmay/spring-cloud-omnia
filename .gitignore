@@ -140,7 +140,7 @@ buildNumber.properties
 Thumbs.db
 ehthumbs.db
 ehthumbs_vista.db
-
+.idea*
 # Dump file
 *.stackdump
 
