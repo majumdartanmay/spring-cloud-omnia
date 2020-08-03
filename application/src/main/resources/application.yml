@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    omnia:
+      server:
+        prefix: myserver
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/omnia_logs
+    username: root
+    password: wXmCv53#ZCLa*LTFGLaMtARX7j
+  jpa:
+    hibernate:
+      ddl-auto: create

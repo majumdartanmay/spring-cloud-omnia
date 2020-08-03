@@ -1,0 +1,4 @@
+# Autoconfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.cloud.omnia.server.config.OmniaServerAutoConfiguration
+org.cloud.omnia.server.database.TestFunctions
