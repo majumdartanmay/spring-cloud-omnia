@@ -1,3 +1,0 @@
-# Autoconfiguration
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.tanmay.service.LibraryBean2

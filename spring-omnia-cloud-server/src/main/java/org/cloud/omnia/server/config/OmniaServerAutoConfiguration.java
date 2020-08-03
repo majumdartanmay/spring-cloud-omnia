@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 @ConditionalOnBean(OmniaClassloaderConfig.Marker.class)
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(OmniaServerProperties.class)
-@Import({OmniaDBLoader.class, OmniaServerMVCConfiguration.class})
+@Import({OmniaDBLoader.class, OmniaServerMVCConfiguration.class, OmniaScheduledConfiguration.class})
 public class OmniaServerAutoConfiguration {
 
     private static final Logger logger = Logger.getLogger(OmniaServerAutoConfiguration.class.getName());

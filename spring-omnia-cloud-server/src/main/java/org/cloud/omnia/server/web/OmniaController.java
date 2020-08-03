@@ -1,7 +1,7 @@
 package org.cloud.omnia.server.web;
 
 import org.cloud.omnia.server.database.entity.NetworkRequestEntity;
-import org.cloud.omnia.server.database.repository.NetworkRequestRepository;
+import org.cloud.omnia.server.processor.BasicOmniaQueue;
 import org.cloud.omnia.server.web.DTO.LogRequestsDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,17 +18,17 @@ public class OmniaController {
 
     private static Logger logger = Logger.getLogger(OmniaController.class.getName());
 
-    private NetworkRequestRepository networkRequestRepository;
+    private BasicOmniaQueue basicOmniaQueue;
 
-    public OmniaController(NetworkRequestRepository networkRequestRepository){
-        this.networkRequestRepository = networkRequestRepository;
+    public OmniaController(BasicOmniaQueue basicOmniaQueue){
+        this.basicOmniaQueue = basicOmniaQueue;
     }
 
     @PostMapping("/createLog")
     public ResponseEntity<?> createLog(@Valid @RequestBody LogRequestsDTO requestsDTO){
         try{
             NetworkRequestEntity networkRequestEntity = requestsDTO.getNetworkRequestEntity();
-            networkRequestRepository.save(networkRequestEntity);
+            basicOmniaQueue.addToQueue(networkRequestEntity);
             return new ResponseEntity<>(true, HttpStatus.OK);
         }catch(Exception e){
             e.printStackTrace();

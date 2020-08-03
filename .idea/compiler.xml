@@ -6,9 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="springlibrary" />
-        <module name="multi-module-application" />
         <module name="application" />
+        <module name="multi-module-application" />
+        <module name="springlibrary" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
