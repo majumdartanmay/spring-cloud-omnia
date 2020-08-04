@@ -10,7 +10,10 @@
 
 
     <modules>
-        <module>application</module>
+        <module>spring-omnia-cloud-server</module>
+        <module>spring-omnia-cloud-client</module>
+        <module>spring-cloud-omnia-parent</module>
+        <module>spring-cloud-omnia-server-sample</module>
     </modules>
 
 </project>

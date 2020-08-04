@@ -9,5 +9,5 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @Configuration(proxyBeanMethods = false)
 @Import({BasicOmniaQueue.class, OmniaJobQueueProcessor.class })
-public class OmniaScheduledConfiguration {
+public class OmniaServerScheduledConfiguration {
 }

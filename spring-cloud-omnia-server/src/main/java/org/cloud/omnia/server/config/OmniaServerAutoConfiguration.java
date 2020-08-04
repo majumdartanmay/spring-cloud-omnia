@@ -6,13 +6,12 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-
 import java.util.logging.Logger;
 
-@ConditionalOnBean(OmniaClassloaderConfig.Marker.class)
+@ConditionalOnBean(OmniaServerClassloaderConfig.Marker.class)
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(OmniaServerProperties.class)
-@Import({OmniaDBLoader.class, OmniaServerMVCConfiguration.class, OmniaScheduledConfiguration.class})
+@Import({OmniaDBLoader.class, OmniaServerMVCConfiguration.class, OmniaServerScheduledConfiguration.class})
 public class OmniaServerAutoConfiguration {
 
     private static final Logger logger = Logger.getLogger(OmniaServerAutoConfiguration.class.getName());
