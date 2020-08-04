@@ -1,4 +1,8 @@
 # Autoconfiguration
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 org.cloud.omnia.server.config.OmniaServerAutoConfiguration
-org.cloud.omnia.server.database.TestFunctions
+org.cloud.omnia.server.config.OmniaServerScheduledConfiguration
+org.cloud.omnia.server.processor.OmniaJobQueueProcessor
+org.cloud.omnia.server.config.OmniaServerMVCConfiguration
+
+

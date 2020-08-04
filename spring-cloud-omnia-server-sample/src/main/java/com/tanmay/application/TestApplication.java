@@ -10,6 +10,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class TestApplication {
 
     public static void main(String... args){
-        ConfigurableApplicationContext ss = SpringApplication.run(TestApplication.class, args);
+       SpringApplication.run(TestApplication.class, args);
     }
 }

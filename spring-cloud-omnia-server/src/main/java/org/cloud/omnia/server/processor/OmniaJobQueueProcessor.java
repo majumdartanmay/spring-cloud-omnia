@@ -1,18 +1,22 @@
 package org.cloud.omnia.server.processor;
 
 import org.cloud.omnia.server.config.OmniaServerProperties;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.logging.Logger;
 
 @Service
+@ConditionalOnBean(BasicOmniaQueue.class)
 public class OmniaJobQueueProcessor {
 
     private BasicOmniaQueue omniaQueue;
+
     private static Logger log = Logger.getLogger(OmniaJobQueueProcessor.class.getName());
 
-    public OmniaJobQueueProcessor(BasicOmniaQueue queue){
+    public OmniaJobQueueProcessor( BasicOmniaQueue queue){
         this.omniaQueue = queue;
     }
 

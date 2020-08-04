@@ -4,11 +4,11 @@ import org.cloud.omnia.server.config.OmniaServerProperties;
 import org.cloud.omnia.server.database.entity.NetworkRequestEntity;
 import org.cloud.omnia.server.database.repository.NetworkRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 import java.util.LinkedList;
 import java.util.Queue;
 
-@Component
+@Configuration(proxyBeanMethods = false)
 public class BasicOmniaQueue implements OmniaJobQueueInterface<NetworkRequestEntity> {
 
     private Queue<NetworkRequestEntity> networkRequestEntityQueue = new LinkedList<>();
