@@ -8,12 +8,12 @@
     <artifactId>springlibrary</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
     <modules>
-        <module>spring-omnia-cloud-server</module>
-        <module>spring-omnia-cloud-client</module>
+
         <module>spring-cloud-omnia-parent</module>
         <module>spring-cloud-omnia-server-sample</module>
+        <module>spring-cloud-omnia-server</module>
+        <module>spring-cloud-omnia-client</module>
     </modules>
 
 </project>

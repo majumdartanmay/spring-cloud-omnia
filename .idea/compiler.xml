@@ -6,15 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="springlibrary" />
-        <module name="spring-cloud-omnia-server-sample" />
         <module name="spring-cloud-omnia-server" />
+        <module name="spring-cloud-omnia-server-sample" />
+        <module name="springlibrary" />
         <module name="spring-cloud-omnia-client" />
-        <module name="spring-cloud-omnia-parent" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="application" target="1.8" />
+      <module name="multi-module-application" target="1.8" />
       <module name="multi-module-library" target="1.8" />
+      <module name="spring-cloud-config" target="1.8" />
+      <module name="spring-cloud-omnia-parent" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
