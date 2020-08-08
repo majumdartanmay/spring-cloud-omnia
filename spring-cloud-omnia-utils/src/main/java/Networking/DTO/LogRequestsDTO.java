@@ -1,8 +1,5 @@
-package org.cloud.omnia.server.web.DTO;
+package Networking.DTO;
 
-import org.cloud.omnia.server.database.entity.NetworkRequestEntity;
-
-import javax.validation.constraints.NotEmpty;
 
 public class LogRequestsDTO {
 
@@ -10,7 +7,6 @@ public class LogRequestsDTO {
 
     private String responseBody;
 
-    @NotEmpty
     private String endpoint;
 
     private int statusCode;
@@ -75,19 +71,5 @@ public class LogRequestsDTO {
 
     public void setResponseHeaders(String responseHeaders) {
         this.responseHeaders = responseHeaders;
-    }
-
-    public NetworkRequestEntity getNetworkRequestEntity(){
-
-        NetworkRequestEntity networkRequestEntity = new NetworkRequestEntity();
-        networkRequestEntity.setRequestBody(requestBody);
-        networkRequestEntity.setResponseBody(responseBody);
-        networkRequestEntity.setEndpoint(endpoint);
-        networkRequestEntity.setStatusCode(statusCode);
-        networkRequestEntity.setRequestHeaders(requestHeaders);
-        networkRequestEntity.setResponseHeaders(responseHeaders);
-        networkRequestEntity.setParameters(params);
-
-        return networkRequestEntity;
     }
 }
