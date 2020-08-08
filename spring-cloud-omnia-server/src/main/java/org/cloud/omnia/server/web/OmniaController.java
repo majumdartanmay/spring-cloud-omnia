@@ -39,7 +39,7 @@ public class OmniaController {
         }
     }
 
-    @GetMapping("/")
+    @GetMapping("/ping")
     public boolean ping(){
         return true;
     }

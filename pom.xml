@@ -11,11 +11,31 @@
 
     <modules>
 
-        <module>spring-cloud-omnia-parent</module>
         <module>spring-cloud-omnia-server-sample</module>
         <module>spring-cloud-omnia-server</module>
         <module>spring-cloud-omnia-client</module>
         <module>spring-cloud-omnia-utils</module>
+        <module>spring-cloud-omnia-client-sample</module>
     </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+            <version>2.3.2.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>2.3.2.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.cloud.omnia</groupId>
+            <artifactId>spring-cloud-omnia-client</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
 </project>

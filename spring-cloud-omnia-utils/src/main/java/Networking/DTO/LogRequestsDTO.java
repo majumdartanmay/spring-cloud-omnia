@@ -9,6 +9,8 @@ public class LogRequestsDTO {
 
     private String endpoint;
 
+    private String method;
+
     private int statusCode;
 
     private String params;
@@ -71,5 +73,13 @@ public class LogRequestsDTO {
 
     public void setResponseHeaders(String responseHeaders) {
         this.responseHeaders = responseHeaders;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
     }
 }

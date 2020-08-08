@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("Test")
-public class TestController {
+@RequestMapping("OmniaServer")
+public class OmniaServerSampleController {
 
     @GetMapping("/")
     public String ping(){

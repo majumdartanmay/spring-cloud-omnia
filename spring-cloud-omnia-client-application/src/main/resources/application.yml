@@ -1,0 +1,9 @@
+server:
+  port: 0
+spring:
+  cloud:
+    omnia:
+      client:
+        omniaUrl: http://localhost:8080
+        omniaServerName: myserver
+        strict: false

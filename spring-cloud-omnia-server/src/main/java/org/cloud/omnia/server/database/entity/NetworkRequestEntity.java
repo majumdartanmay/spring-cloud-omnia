@@ -17,6 +17,8 @@ public class NetworkRequestEntity {
 
     private String endpoint;
 
+    private String method;
+
     private String parameters;
 
     @Column(nullable =  true)
@@ -128,5 +130,13 @@ public class NetworkRequestEntity {
 
     public void setUpdatedOn(Date updatedOn) {
         this.updatedOn = updatedOn;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
     }
 }
