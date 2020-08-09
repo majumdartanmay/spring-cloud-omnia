@@ -1,11 +1,11 @@
 package org.cloud.omnia.server.config;
 
 import org.cloud.omnia.server.database.OmniaDBLoader;
-
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+
 import java.util.logging.Logger;
 
 @ConditionalOnBean(OmniaServerClassloaderConfig.Marker.class)

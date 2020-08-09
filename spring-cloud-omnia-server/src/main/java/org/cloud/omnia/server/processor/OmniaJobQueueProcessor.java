@@ -1,7 +1,5 @@
 package org.cloud.omnia.server.processor;
 
-import org.cloud.omnia.server.config.OmniaServerProperties;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;

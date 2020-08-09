@@ -5,6 +5,7 @@ import org.cloud.omnia.server.database.entity.NetworkRequestEntity;
 import org.cloud.omnia.server.database.repository.NetworkRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+
 import java.util.LinkedList;
 import java.util.Queue;
 

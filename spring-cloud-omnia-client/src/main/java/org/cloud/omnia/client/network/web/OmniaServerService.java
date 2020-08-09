@@ -1,10 +1,10 @@
 package org.cloud.omnia.client.network.web;
+
 import Networking.DTO.LogRequestsDTO;
 import com.google.gson.Gson;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import org.apache.http.conn.HttpHostConnectException;
 import org.cloud.omnia.client.config.OmniaClientProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
