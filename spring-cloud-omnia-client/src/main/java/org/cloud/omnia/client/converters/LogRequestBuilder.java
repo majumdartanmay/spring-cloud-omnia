@@ -1,6 +1,7 @@
 package org.cloud.omnia.client.converters;
 
 import Networking.DTO.LogRequestsDTO;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,9 @@ public class LogRequestBuilder {
     private HttpServletRequest request;
     private HttpServletResponse response;
 
+    @Value("${spring.application.name}")
+    private String appName;
+
     public LogRequestBuilder(HttpServletRequest request, HttpServletResponse response){
         this.request = request;
         this.response = response;
@@ -26,6 +30,11 @@ public class LogRequestBuilder {
         setResponseHeaders();
         setStatusCode();
         setMethod();
+        setAppName();
+    }
+
+    private void setAppName(){
+        logRequestsDTO.setAppName(appName);
     }
 
     private void setMethod(){

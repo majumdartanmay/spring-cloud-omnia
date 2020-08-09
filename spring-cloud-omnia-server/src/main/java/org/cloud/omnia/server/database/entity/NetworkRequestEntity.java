@@ -32,6 +32,8 @@ public class NetworkRequestEntity {
 
     private int statusCode;
 
+    private String appName;
+
     @Basic(optional = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
@@ -138,5 +140,13 @@ public class NetworkRequestEntity {
 
     public void setMethod(String method) {
         this.method = method;
+    }
+
+    public String getAppName() {
+        return appName;
+    }
+
+    public void setAppName(String appName) {
+        this.appName = appName;
     }
 }

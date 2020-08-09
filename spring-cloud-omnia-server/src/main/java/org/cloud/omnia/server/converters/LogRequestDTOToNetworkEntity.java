@@ -16,6 +16,7 @@ public class LogRequestDTOToNetworkEntity implements BaseConverterInterface<LogR
         networkRequestEntity.setResponseHeaders(logRequestsDTO.getResponseHeaders());
         networkRequestEntity.setParameters(logRequestsDTO.getParams());
         networkRequestEntity.setMethod(logRequestsDTO.getMethod());
+        networkRequestEntity.setAppName(logRequestsDTO.getAppName());
 
         return networkRequestEntity;
     }

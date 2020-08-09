@@ -19,6 +19,8 @@ public class LogRequestsDTO {
 
     private String responseHeaders;
 
+    private String appName;
+
     public String getRequestBody() {
         return requestBody;
     }
@@ -81,5 +83,13 @@ public class LogRequestsDTO {
 
     public void setMethod(String method) {
         this.method = method;
+    }
+
+    public String getAppName() {
+        return appName;
+    }
+
+    public void setAppName(String appName) {
+        this.appName = appName;
     }
 }
