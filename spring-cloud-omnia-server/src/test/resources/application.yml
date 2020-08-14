@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    omnia:
+      server:
+        prefix: myserver
+        syncTime: 700000
+        maxQueueSize: 2
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/omnia_logs?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false
+    username: root
+    password: wXmCv53#ZCLa*LTFGLaMtARX7j
+  jpa:
+    hibernate:
+      ddl-auto: validate
