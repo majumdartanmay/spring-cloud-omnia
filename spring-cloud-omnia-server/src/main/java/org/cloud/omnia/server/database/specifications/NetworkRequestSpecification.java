@@ -12,38 +12,52 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class NetworkRequestSpecification implements Specification<NetworkRequestEntity> {
+public class NetworkRequestSpecification
+        implements Specification<NetworkRequestEntity> {
 
+    /**
+     * filters provided for READ operations.
+     */
     private OmniaSearchFilters[] filters;
 
-    public NetworkRequestSpecification(OmniaSearchFilters[] filters){
-        this.filters = filters;
+    /**
+     * Contructor.
+     * @param omniaSearchFilters filter provided for READ operations.
+     */
+    public NetworkRequestSpecification(
+            final OmniaSearchFilters[] omniaSearchFilters) {
+        this.filters = omniaSearchFilters;
     }
 
-    private Predicate processCriteria(Root<NetworkRequestEntity> root,
-                                      CriteriaBuilder builder,
-                                      OmniaSearchFilters.SubSearchFilters criteria) {
+    private Predicate processCriteria(
+                  final Root<NetworkRequestEntity> root,
+                  final CriteriaBuilder builder,
+                  final OmniaSearchFilters.SubSearchFilters criteria) {
 
-        switch (criteria.getOperation()){
+        switch (criteria.getOperation()) {
             case ">":
                 return builder.greaterThanOrEqualTo(
-                        root.get(criteria.getKey()), criteria.getValue());
+                    root.get(criteria.getKey()), criteria.getValue());
             case "<":
                 return builder.lessThanOrEqualTo(
-                        root.get(criteria.getKey()), criteria.getValue());
+                    root.get(criteria.getKey()), criteria.getValue());
             case ":":
                 if (root.get(criteria.getKey()).getJavaType() == String.class) {
                     return builder.like(
-                            root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
+                    root.get(criteria.getKey()),
+                            "%" + criteria.getValue() + "%");
                 } else {
-                    return builder.equal(root.get(criteria.getKey()), criteria.getValue());
+                    return builder.equal(
+                            root.get(criteria.getKey()), criteria.getValue());
                 }
             case "<>":
                 if (root.get(criteria.getKey()).getJavaType() == String.class) {
                     return builder.notLike(
-                            root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
+                            root.get(criteria.getKey()),
+                            "%" + criteria.getValue() + "%");
                 } else {
-                    return builder.notEqual(root.get(criteria.getKey()), criteria.getValue());
+                    return builder.notEqual(root.get(criteria.getKey()),
+                            criteria.getValue());
                 }
             default:
                 return null;
@@ -51,8 +65,18 @@ public class NetworkRequestSpecification implements Specification<NetworkRequest
 
     }
 
+    /**
+     * Function to convert custom query to predicate.
+     * @param root Holds the entity related data.
+     * @param query
+     * @param builder Used to perform required operations on the query.
+     * @return Predicate which wil act as a filer.
+     */
     @Override
-    public Predicate toPredicate(Root<NetworkRequestEntity> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
+    public Predicate toPredicate(
+            final Root<NetworkRequestEntity> root,
+            final CriteriaQuery<?> query,
+            final CriteriaBuilder builder) {
 
         if (filters == null || filters.length == 0) {
             return null;
@@ -61,7 +85,8 @@ public class NetworkRequestSpecification implements Specification<NetworkRequest
         List<Predicate> finalPredicate = new ArrayList<>();
         for (OmniaSearchFilters filter : filters) {
 
-            OmniaSearchFilters.SubSearchFilters[] searchFilters = filter.getFilters();
+            OmniaSearchFilters.SubSearchFilters[]
+                    searchFilters = filter.getFilters();
 
             Predicate[] tempPredicate = Arrays.stream(searchFilters)
                     .map(x -> processCriteria(root, builder, x))
@@ -75,6 +100,10 @@ public class NetworkRequestSpecification implements Specification<NetworkRequest
                     case "OR":
                         finalPredicate.add(builder.or(tempPredicate));
                         break;
+                    default:
+                        throw new RuntimeException(
+                                String.format("Invalid operator %s",
+                                filter.getBaseOperator()));
                 }
             }
         }

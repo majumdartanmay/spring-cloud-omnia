@@ -1,8 +1,6 @@
 package org.cloud.omnia.server.web;
 
 import database.OmniaSearchFilters;
-import org.cloud.omnia.server.EnableOmniaServer;
-import org.cloud.omnia.server.OmniaServerApplication;
 import org.cloud.omnia.server.config.OmniaServerProperties;
 import org.cloud.omnia.server.database.OmniaDBLoader;
 import org.cloud.omnia.server.database.entity.NetworkRequestEntity;
@@ -18,11 +16,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;

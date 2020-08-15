@@ -16,8 +16,8 @@ public class OmniaSearchFilters {
 
     private String baseOperator;
 
-    public OmniaSearchFilters(SubSearchFilters[] filters){
-        this.filters = filters;
+    public OmniaSearchFilters(SubSearchFilters[] subSearchFilters){
+        this.filters = subSearchFilters;
     }
 
     public String getBaseOperator() {

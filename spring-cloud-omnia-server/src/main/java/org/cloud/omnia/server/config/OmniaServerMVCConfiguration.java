@@ -7,21 +7,24 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.logging.Logger;
-
+/**
+ * Class to create web configuration beans.
+ *
+ * @author Tanmay Majumdar
+ */
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnWebApplication
 public class OmniaServerMVCConfiguration {
 
-    private static final Logger log = Logger.getLogger(OmniaServerMVCConfiguration.class.getName());
-
-    public OmniaServerMVCConfiguration(){
-        log.info("Omnia server mvc configured");
-    }
-
+    /**
+     * Function to return omnia controller bean.
+     * @param basicOmniaQueue queue for data-transaction purposes.
+     * @return OmniaController.
+     */
     @Bean
     @ConditionalOnBean(BasicOmniaQueue.class)
-    public OmniaController getOmniaController(BasicOmniaQueue basicOmniaQueue){
+    public OmniaController getOmniaController(
+            final BasicOmniaQueue basicOmniaQueue) {
         return new OmniaController(basicOmniaQueue);
     }
 }

@@ -6,17 +6,18 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import java.util.logging.Logger;
 
+/**
+ * Class to load necessary configuration beans.
+ *
+ * @author Tanmay Majumdar
+ */
 @ConditionalOnBean(OmniaServerClassloaderConfig.Marker.class)
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(OmniaServerProperties.class)
-@Import({ OmniaDBLoader.class, OmniaServerScheduledConfiguration.class, OmniaServerMVCConfiguration.class})
+@Import({ OmniaDBLoader.class,
+        OmniaServerScheduledConfiguration.class,
+        OmniaServerMVCConfiguration.class})
 public class OmniaServerAutoConfiguration {
 
-    private static final Logger logger = Logger.getLogger(OmniaServerAutoConfiguration.class.getName());
-
-    public OmniaServerAutoConfiguration(){
-        logger.info(OmniaServerAutoConfiguration.class.getName() + " has been initialized." );
-    }
 }

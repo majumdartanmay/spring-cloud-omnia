@@ -6,21 +6,38 @@ import org.springframework.stereotype.Service;
 
 import java.util.logging.Logger;
 
+/**
+ * Class to sync data with database.
+ *
+ * @author Tanmay Majumdar
+ */
 @Service
 @ConditionalOnBean(BasicOmniaQueue.class)
 public class OmniaJobQueueProcessor {
 
+    /**
+     * Queue used to sync the API logs with database.
+     */
     private BasicOmniaQueue omniaQueue;
 
-    private static Logger log = Logger.getLogger(OmniaJobQueueProcessor.class.getName());
+    /**
+     * Logger to record events.
+     */
+    private static Logger log =
+            Logger.getLogger(OmniaJobQueueProcessor.class.getName());
 
-    public OmniaJobQueueProcessor( BasicOmniaQueue queue){
+    /**
+     * Constructor to get Omnia queue.
+     * @param queue used to sync data.
+     */
+    public OmniaJobQueueProcessor(final BasicOmniaQueue queue) {
         this.omniaQueue = queue;
     }
 
     @Scheduled(fixedDelayString = "${spring.cloud.omnia.server.syncTime:10000}")
-    private void triggerEvent(){
-        log.info(String.format("Queue size is %d. Send events to data store ", omniaQueue.getSize()));
+    private void triggerEvent() {
+        log.info(String.format("Queue size is %d. Send events to data store ",
+                omniaQueue.getSize()));
         omniaQueue.forceSend();
     }
 

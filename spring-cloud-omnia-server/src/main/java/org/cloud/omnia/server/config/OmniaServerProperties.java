@@ -2,43 +2,85 @@ package org.cloud.omnia.server.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import java.util.logging.Logger;
-
 
 @ConfigurationProperties("spring.cloud.omnia.server")
 public class OmniaServerProperties {
 
-    private static final Logger logger = Logger.getLogger(OmniaServerProperties.class.getName());
-
+    /**
+     * Stored server name.
+     */
     private String prefix;
+
+    /**
+     * Stores queue and DB sync time.
+     */
     private Long syncTime;
+
+    /**
+     * Max queue size. The data in queue is synced,
+     * when the queue reaches this size.
+     */
     private Integer maxQueueSize;
 
+    /**
+     * Default DB sync time b/w DB and omnia server.
+     */
+    private static final long DEFAULT_SYNC_TIME = 10000L;
+
+    /**
+     * Default max queue size.
+     */
+    private static final int DEFAULT_MAX_QUEUE_SIZE = 10;
+
+    /**
+     * Getter of prefix.
+     * @return Omnia server perfix.
+     */
     public String getPrefix() {
         return prefix;
     }
 
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
+    /**
+     * Stores the omnia server prefix.
+     * @param value Omnia server prefix
+     */
+    public void setPrefix(final String value) {
+        this.prefix = value;
     }
 
+    /**
+     *
+     * @return sync time with DB.
+     */
     public Long getSyncTime() {
-        if(syncTime != null)
+        if (syncTime != null) {
             return syncTime;
-        return 10000L;
+        }
+        return DEFAULT_SYNC_TIME;
     }
 
-    public void setSyncTime(Long syncTime) {
-        this.syncTime = syncTime;
+    /**
+     * @param value store DB sync time
+     */
+    public void setSyncTime(final Long value) {
+        this.syncTime = value;
     }
 
+    /**
+     * @return get max queue size
+     */
     public Integer getMaxQueueSize() {
-        if(maxQueueSize != null)
+        if (maxQueueSize != null) {
             return maxQueueSize;
-        return 10;
+        }
+        return DEFAULT_MAX_QUEUE_SIZE;
     }
 
-    public void setMaxQueueSize(Integer maxQueueSize) {
-        this.maxQueueSize = maxQueueSize;
+    /**
+     *
+     * @param value set max queue size
+     */
+    public void setMaxQueueSize(final Integer value) {
+        this.maxQueueSize = value;
     }
 }

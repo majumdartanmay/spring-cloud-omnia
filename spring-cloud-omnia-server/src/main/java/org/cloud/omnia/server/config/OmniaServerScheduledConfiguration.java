@@ -8,16 +8,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import java.util.logging.Logger;
-
+/**
+ * Class to load data exchange processor classes.
+ */
 @EnableScheduling
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnBean(OmniaDBLoader.class)
-@Import({BasicOmniaQueue.class,OmniaJobQueueProcessor.class })
+@Import({BasicOmniaQueue.class, OmniaJobQueueProcessor.class })
 public class OmniaServerScheduledConfiguration {
-    private static final Logger logger = Logger.getLogger(OmniaServerMVCConfiguration.class.getName());
-    public OmniaServerScheduledConfiguration(){
-        logger.info("Omnia Server scheduled configuration created");
-    }
-
-}
+ }
