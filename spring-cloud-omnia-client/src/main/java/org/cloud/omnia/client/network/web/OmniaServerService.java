@@ -39,7 +39,7 @@ public class OmniaServerService {
 
     public void logRequest(LogRequestsDTO request){
         Unirest.setTimeouts(0, 0);
-        String baseUrl = String.format("%s/%s", getOmniaServerUrl(), "createLog");
+        String baseUrl = String.format("%s/%s", getOmniaServerUrl(), "logs/create");
 
         try {
             HttpResponse<String> response = Unirest.post(baseUrl)

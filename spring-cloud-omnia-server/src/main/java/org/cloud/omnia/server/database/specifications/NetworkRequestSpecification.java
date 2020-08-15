@@ -24,30 +24,31 @@ public class NetworkRequestSpecification implements Specification<NetworkRequest
                                       CriteriaBuilder builder,
                                       OmniaSearchFilters.SubSearchFilters criteria) {
 
-        if (criteria.getOperation().equalsIgnoreCase(">")) {
-            return builder.greaterThanOrEqualTo(
-                    root.get(criteria.getKey()), criteria.getValue());
+        switch (criteria.getOperation()){
+            case ">":
+                return builder.greaterThanOrEqualTo(
+                        root.get(criteria.getKey()), criteria.getValue());
+            case "<":
+                return builder.lessThanOrEqualTo(
+                        root.get(criteria.getKey()), criteria.getValue());
+            case ":":
+                if (root.get(criteria.getKey()).getJavaType() == String.class) {
+                    return builder.like(
+                            root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
+                } else {
+                    return builder.equal(root.get(criteria.getKey()), criteria.getValue());
+                }
+            case "<>":
+                if (root.get(criteria.getKey()).getJavaType() == String.class) {
+                    return builder.notLike(
+                            root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
+                } else {
+                    return builder.notEqual(root.get(criteria.getKey()), criteria.getValue());
+                }
+            default:
+                return null;
         }
-        else if (criteria.getOperation().equalsIgnoreCase("<")) {
-            return builder.lessThanOrEqualTo(
-                    root.get(criteria.getKey()), criteria.getValue());
-        }
-        else if (criteria.getOperation().equalsIgnoreCase(":")) {
-            if (root.get(criteria.getKey()).getJavaType() == String.class) {
-                return builder.like(
-                        root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
-            } else {
-                return builder.equal(root.get(criteria.getKey()), criteria.getValue());
-            }
-        }else if(criteria.getOperation().equals("<>")){
-            if (root.get(criteria.getKey()).getJavaType() == String.class) {
-                return builder.notLike(
-                        root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
-            } else {
-                return builder.notEqual(root.get(criteria.getKey()), criteria.getValue());
-            }
-        }
-        return null;
+
     }
 
     @Override

@@ -35,8 +35,8 @@ public class OmniaController {
         this.basicOmniaQueue = basicOmniaQueue;
     }
 
-    @PostMapping("{profile}/logs/create")
-    public ResponseEntity<?> createLog(@PathVariable String profile, @Valid @RequestBody LogRequestsDTO requestsDTO){
+    @PostMapping("/logs/create")
+    public ResponseEntity<?> createLog(@Valid @RequestBody LogRequestsDTO requestsDTO){
         try{
 
             BaseConverterInterface<LogRequestsDTO, NetworkRequestEntity> converter =
@@ -57,10 +57,7 @@ public class OmniaController {
         try{
 
             Specification<NetworkRequestEntity> dbFilters = new NetworkRequestSpecification(filters);
-
-            //List<NetworkRequestEntity> result = networkRequestRepository.findAll(dbFilters);
-            List<NetworkRequestEntity> result = new ArrayList<>();
-
+            List<NetworkRequestEntity> result = networkRequestRepository.findAll(dbFilters);
             return new ResponseEntity<>(result, HttpStatus.OK);
 
         }catch(Exception e){
