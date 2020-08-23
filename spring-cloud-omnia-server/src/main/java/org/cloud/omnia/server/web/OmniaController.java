@@ -12,21 +12,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Class to exchange all the API related data.
  * Including writing and reading API logs.
  * @author Tanmay Majumdar
  */
-@RestController
+@Controller
 @RequestMapping(path = "${spring.cloud.omnia.server.prefix:}")
 @Validated
 public class OmniaController {
@@ -56,6 +57,7 @@ public class OmniaController {
      * @return the result of the request to mark the success of the API.
      */
     @PostMapping("/logs/create")
+    @ResponseBody
     public ResponseEntity<?> createLog(
             @Valid @RequestBody final LogRequestsDTO requestsDTO) {
         try {
@@ -71,12 +73,25 @@ public class OmniaController {
         }
     }
 
+    @RequestMapping(method = RequestMethod.GET)
+    public String status(HttpServletRequest request, Map<String, Object> model) {
+        populateBase( model);
+        return "omnia/status";
+    }
+
+    protected void populateBase(Map<String, Object> model) {
+        model.put("basePath", "/");
+        model.put("authorName", "Tanmay Majumdar");
+        model.put("time", new Date().toString());
+    }
+
     /**
      * API to fetch the logs.
      * @param filters All the DB filters for the necessary filters.
      * @return The list of logs according to the filters.
      */
     @PostMapping("/logs/fetch")
+    @ResponseBody
     public ResponseEntity<?> fetchLogs(
             @RequestBody final OmniaSearchFilters[] filters) {
         try {
@@ -96,6 +111,7 @@ public class OmniaController {
      * @return boolean
      */
     @GetMapping("/ping")
+    @ResponseBody
     public boolean ping() {
         return true;
     }
