@@ -1,14 +1,23 @@
 package org.cloud.omnia.server.web;
 
 import Networking.DTO.LogRequestsDTO;
+import Networking.DTO.OmniaConfigurationDTO;
+import applications.IOmniaApplication;
+import configurations.IOmniaConfiguration;
 import database.OmniaSearchFilters;
+import javafx.util.Pair;
+import org.cloud.omnia.server.converters.ConfigurationToDTO;
 import org.cloud.omnia.server.converters.IBaseConverterInterface;
 import org.cloud.omnia.server.converters.LogRequestDTOToNetworkEntity;
+import org.cloud.omnia.server.converters.RequestToApplicationEntity;
 import org.cloud.omnia.server.database.entity.NetworkRequestEntity;
+import org.cloud.omnia.server.database.entity.OmniaApplicationEntity;
 import org.cloud.omnia.server.database.repository.NetworkRequestRepository;
+import org.cloud.omnia.server.database.repository.OmniaApplicationRepository;
 import org.cloud.omnia.server.database.specifications.NetworkRequestSpecification;
 import org.cloud.omnia.server.processor.BasicOmniaQueue;
 import org.cloud.omnia.server.processor.IOmniaJobQueueInterface;
+import org.cloud.omnia.server.utils.OmniaApplicationBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
@@ -44,6 +53,12 @@ public class OmniaController {
     @Autowired
     private NetworkRequestRepository networkRequestRepository;
 
+    @Autowired
+    private OmniaApplicationRepository omniaApplicationRepository;
+
+    @Autowired
+    private OmniaConfigurationProvider configuration;
+
     /**
      * Gets the queue in which the logs are supposed to be pushed.
      * @param suppliedQueue This will be used to enqueue the logs.
@@ -60,17 +75,18 @@ public class OmniaController {
     @PostMapping("/logs/create")
     @ResponseBody
     public ResponseEntity<?> createLog(
-            @Valid @RequestBody final LogRequestsDTO requestsDTO) {
+            @Valid @RequestBody final LogRequestsDTO requestsDTO,
+            final HttpServletRequest request) {
         try {
+
             IBaseConverterInterface<LogRequestsDTO, NetworkRequestEntity>
             converter = new LogRequestDTOToNetworkEntity();
             basicOmniaQueue.addToQueue(converter.convert(requestsDTO));
-
             return new ResponseEntity<>(true, HttpStatus.OK);
 
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(e   .getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -113,8 +129,29 @@ public class OmniaController {
      */
     @GetMapping("/ping")
     @ResponseBody
-    public boolean ping() {
+    public boolean ping(@RequestParam String appName, HttpServletRequest request ) {
+        String remoteAddr = request.getRemoteAddr();
+
+        IBaseConverterInterface<IOmniaApplication, OmniaApplicationEntity>
+                converter2 = new RequestToApplicationEntity();
+
+        IOmniaApplication application = new OmniaApplicationBuilder()
+                .setApplicationName(appName)
+                .setIpAddr(remoteAddr)
+                .build();
+
+        OmniaApplicationEntity applicationDao = converter2.convert(application);
+
+        omniaApplicationRepository.save(applicationDao);
         return true;
+    }
+
+    @GetMapping("/configuration")
+    @ResponseBody
+    public OmniaConfigurationDTO getOmniaConfiguration(){
+        IBaseConverterInterface<IOmniaConfiguration, OmniaConfigurationDTO> converter
+                = new ConfigurationToDTO();
+        return converter.convert(configuration);
     }
 
 }

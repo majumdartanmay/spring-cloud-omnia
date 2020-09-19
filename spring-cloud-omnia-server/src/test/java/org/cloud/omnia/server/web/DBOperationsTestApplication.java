@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @Profile("test")
-public class DBOperationsTest extends BaseOmniaApplicationTest {
+public class DBOperationsTestApplication extends BasicOmniaTestApplication {
 
     @Autowired
     private NetworkRequestRepository networkRequestRepository;

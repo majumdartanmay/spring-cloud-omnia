@@ -1,6 +1,7 @@
 package org.cloud.omnia.server.config;
 
 import org.cloud.omnia.server.database.OmniaDBLoader;
+import org.cloud.omnia.server.web.OmniaConfigurationProvider;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,7 @@ import org.springframework.context.annotation.Import;
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(OmniaServerProperties.class)
 @Import({ OmniaDBLoader.class,
+        OmniaConfigurationProvider.class,
         OmniaServerScheduledConfiguration.class,
         OmniaServerMVCConfiguration.class})
 public class OmniaServerAutoConfiguration {

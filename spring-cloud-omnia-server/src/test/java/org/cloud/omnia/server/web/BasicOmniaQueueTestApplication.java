@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @Profile("test")
-public class BasicOmniaQueueTest extends BaseOmniaApplicationTest {
+public class BasicOmniaQueueTestApplication extends BasicOmniaTestApplication {
 
     @Autowired
     IOmniaJobQueueInterface<NetworkRequestEntity> queue;

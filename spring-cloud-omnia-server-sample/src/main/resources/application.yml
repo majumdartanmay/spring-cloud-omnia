@@ -5,6 +5,7 @@ spring:
         prefix: myserver
         syncTime: 700000
         maxQueueSize: 2
+        environment: development
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/omnia_logs?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false

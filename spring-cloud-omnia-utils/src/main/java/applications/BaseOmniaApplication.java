@@ -1,27 +1,23 @@
 package applications;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class BaseOmniaApplication implements IOmniaApplication {
 
     private String name;
     private OmniaCloudProvider platform;
-    private List<String> hosts = new ArrayList<String>();
+    private String host;
 
-    public BaseOmniaApplication(OmniaCloudProvider provider){
+    public BaseOmniaApplication(OmniaCloudProvider provider) {
         this.platform = provider;
     }
 
-    public void setApplicationName(String name){
+    public BaseOmniaApplication(String name, String host, String platform){
         this.name = name;
-    }
-    public void setApplicationHosts(String host){
-        hosts.add(host);
+        this.host = host;
+        this.platform = platform != null ? OmniaCloudProvider.valueOf(platform) : null;
     }
 
-    public void removeHost(String host){
-        hosts.remove(host);
+    public void setApplicationName(String name) {
+        this.name = name;
     }
 
     public String getApplicationName() {
@@ -32,8 +28,12 @@ public class BaseOmniaApplication implements IOmniaApplication {
         return platform;
     }
 
-    public List<String> getHosts() {
-        return hosts;
+    public String getHost() {
+        return host;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
     }
 
     public enum OmniaCloudProvider {
