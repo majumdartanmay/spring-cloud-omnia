@@ -1,7 +1,9 @@
 package Networking.DTO;
 
 
-public class LogRequestsDTO {
+import Networking.DTO.interfaces.ILogRequestsDTO;
+
+public class LogRequestsDTO implements ILogRequestsDTO {
 
     private String requestBody;
 

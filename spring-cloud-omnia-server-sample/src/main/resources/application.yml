@@ -9,7 +9,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/omnia_logs?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false
     username: root
-    password: wXmCv53#ZCLa*LTFGLaMtARX7j
+    password: wart414ways465
   jpa:
     hibernate:
       ddl-auto: create

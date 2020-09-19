@@ -1,6 +1,6 @@
 package org.cloud.omnia.client.network.web;
 
-import Networking.DTO.LogRequestsDTO;
+import Networking.DTO.interfaces.ILogRequestsDTO;
 import com.google.gson.Gson;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
@@ -37,7 +37,7 @@ public class OmniaServerService {
                 omniaClientProperties.getOmniaServerName());
     }
 
-    public void logRequest(LogRequestsDTO request){
+    public void logRequest(ILogRequestsDTO request){
         Unirest.setTimeouts(0, 0);
         String baseUrl = String.format("%s/%s", getOmniaServerUrl(), "logs/create");
 
@@ -48,7 +48,8 @@ public class OmniaServerService {
                     .asString();
 
             if(response.getStatus() != 200){
-                logger.warning("Unable to log request to omnia server. Ensure omnia server connectivity"); }
+                logger.warning("Unable to log request to omnia server. " +
+                        "Ensure omnia server connectivity"); }
             else
                 logger.info("Request logged");
 

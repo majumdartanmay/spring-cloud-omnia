@@ -7,7 +7,7 @@ package org.cloud.omnia.server.converters;
  *
  * @author Tanmay Majumdar
  */
-public interface BaseConverterInterface<T_IN, T_OUT> {
+public interface IBaseConverterInterface<T_IN, T_OUT> {
 
     /**
      * Function to convert T_IN to T_OUT.

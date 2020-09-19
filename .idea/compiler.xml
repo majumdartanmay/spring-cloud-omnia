@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="spring-cloud-omnia-server" />
-        <module name="spring-cloud-omnia-server-sample" />
         <module name="spring-cloud-omnia-client-application" />
         <module name="spring-cloud-omnia-utils" />
+        <module name="spring-cloud-omnia-server" />
         <module name="spring-cloud-omnia-client" />
+        <module name="spring-cloud-omnia-server-sample" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

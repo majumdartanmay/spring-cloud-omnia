@@ -6,11 +6,7 @@ body {
 
 @font-face {
   font-family: 'montserratregular';
-  src: url('../font/omnia/montserrat-webfont.eot');
-  src: url('../font/omnia/montserrat-webfont.eot?#iefix') format('embedded-opentype'),
-       url('../font/omnia/montserrat-webfont.woff') format('woff'),
-       url('../font/omnia/montserrat-webfont.ttf') format('truetype'),
-       url('../font/omnia/montserrat-webfont.svg#montserratregular') format('svg');
+  src: url('./montserrat-webfont.eot');
   font-weight: normal;
   font-style: normal;
 }
@@ -19,6 +15,8 @@ body {
   font-size: 34px;
   line-height: 30px;
   font-family: "montserratregular", sans-serif;
+  margin: 2%;
+  font-weight: bold;
 }
 
 .navbar {
@@ -37,6 +35,8 @@ body {
 #bs-example-navbar-collapse-1{
     color: #fff;
     float: right;
+    margin-top: 1.5%;
+    margin-right: 4%;
 }
 
 .navbar-heading-1{
@@ -68,6 +68,15 @@ body {
       overflow: hidden;
 }
 
-.navbar-nav navbar-right > li {
+#heading_1_content > ul {
+       list-style-type: none;
+       margin: 0;
+       padding: 0;
+       overflow: hidden;
+}
+
+.navbar-right > li {
     float: right;
+    display: inline;
+    margin: 10px;
 }

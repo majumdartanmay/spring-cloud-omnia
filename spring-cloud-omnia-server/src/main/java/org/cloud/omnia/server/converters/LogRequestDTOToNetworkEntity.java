@@ -5,7 +5,7 @@ import org.cloud.omnia.server.database.entity.NetworkRequestEntity;
 
 public class LogRequestDTOToNetworkEntity
         implements
-        BaseConverterInterface<LogRequestsDTO, NetworkRequestEntity> {
+        IBaseConverterInterface<LogRequestsDTO, NetworkRequestEntity> {
 
     private NetworkRequestEntity getNetworkRequestEntity(
             final LogRequestsDTO logRequestsDTO) {

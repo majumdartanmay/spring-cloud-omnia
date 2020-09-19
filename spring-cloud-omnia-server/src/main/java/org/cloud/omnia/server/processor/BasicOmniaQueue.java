@@ -16,7 +16,7 @@ import java.util.Queue;
  */
 @Configuration(proxyBeanMethods = false)
 public class BasicOmniaQueue implements
-        OmniaJobQueueInterface<NetworkRequestEntity> {
+        IOmniaJobQueueInterface<NetworkRequestEntity> {
     /**
      * Queue to perform enqueue and dequeue of data.
      */

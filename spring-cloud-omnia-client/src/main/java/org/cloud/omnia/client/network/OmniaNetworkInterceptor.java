@@ -1,6 +1,6 @@
 package org.cloud.omnia.client.network;
 
-import Networking.DTO.LogRequestsDTO;
+import Networking.DTO.interfaces.ILogRequestsDTO;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.cloud.omnia.client.config.OmniaClientProperties;
 import org.cloud.omnia.client.converters.LogRequestBuilder;
@@ -30,9 +30,13 @@ public class OmniaNetworkInterceptor extends HandlerInterceptorAdapter {
     private OmniaClientProperties omniaClientProperties;
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView) {
+    public void postHandle(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            Object handler,
+            @Nullable ModelAndView modelAndView) {
 
-        LogRequestsDTO logRequestsDTO = new LogRequestBuilder(request, response).build();
+        ILogRequestsDTO logRequestsDTO = new LogRequestBuilder(request, response).build();
         omniaServerService.logRequest(logRequestsDTO);
     }
 

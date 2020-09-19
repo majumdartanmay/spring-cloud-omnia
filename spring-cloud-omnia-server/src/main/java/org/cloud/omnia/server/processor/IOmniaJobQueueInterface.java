@@ -1,6 +1,6 @@
 package org.cloud.omnia.server.processor;
 
-public interface OmniaJobQueueInterface<T> {
+public interface IOmniaJobQueueInterface<T> {
     /**
      * To sync the data with DB is all conditions are satisfied.
      */

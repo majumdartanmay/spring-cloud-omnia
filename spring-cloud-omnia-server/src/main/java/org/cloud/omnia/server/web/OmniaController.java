@@ -2,12 +2,13 @@ package org.cloud.omnia.server.web;
 
 import Networking.DTO.LogRequestsDTO;
 import database.OmniaSearchFilters;
-import org.cloud.omnia.server.converters.BaseConverterInterface;
+import org.cloud.omnia.server.converters.IBaseConverterInterface;
 import org.cloud.omnia.server.converters.LogRequestDTOToNetworkEntity;
 import org.cloud.omnia.server.database.entity.NetworkRequestEntity;
 import org.cloud.omnia.server.database.repository.NetworkRequestRepository;
 import org.cloud.omnia.server.database.specifications.NetworkRequestSpecification;
 import org.cloud.omnia.server.processor.BasicOmniaQueue;
+import org.cloud.omnia.server.processor.IOmniaJobQueueInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
@@ -35,7 +36,7 @@ public class OmniaController {
     /**
      * Used to enqueue the data.
      */
-    private BasicOmniaQueue basicOmniaQueue;
+    private IOmniaJobQueueInterface<NetworkRequestEntity> basicOmniaQueue;
 
     /**
      * Repository to fetch the logs.
@@ -61,7 +62,7 @@ public class OmniaController {
     public ResponseEntity<?> createLog(
             @Valid @RequestBody final LogRequestsDTO requestsDTO) {
         try {
-            BaseConverterInterface<LogRequestsDTO, NetworkRequestEntity>
+            IBaseConverterInterface<LogRequestsDTO, NetworkRequestEntity>
             converter = new LogRequestDTOToNetworkEntity();
             basicOmniaQueue.addToQueue(converter.convert(requestsDTO));
 

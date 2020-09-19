@@ -18,19 +18,19 @@ public class OmniaJobQueueProcessor {
     /**
      * Queue used to sync the API logs with database.
      */
-    private BasicOmniaQueue omniaQueue;
+    private final IOmniaJobQueueInterface omniaQueue;
 
     /**
      * Logger to record events.
      */
-    private static Logger log =
+    private static final Logger log =
             Logger.getLogger(OmniaJobQueueProcessor.class.getName());
 
     /**
      * Constructor to get Omnia queue.
      * @param queue used to sync data.
      */
-    public OmniaJobQueueProcessor(final BasicOmniaQueue queue) {
+    public OmniaJobQueueProcessor(final IOmniaJobQueueInterface queue) {
         this.omniaQueue = queue;
     }
 
